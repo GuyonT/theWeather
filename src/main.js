@@ -1,6 +1,5 @@
 import './styles.css';
-import { TaskManager } from './taskManager.js';
-import { InterfaceManager } from './interfaceManager.js';
+import { handleSubmit } from './weatherAPI';
 
 // Set initial theme
 document.body.dataset.theme = 'light';
@@ -18,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-const taskManager = new TaskManager();
-const interfaceManager = new InterfaceManager(taskManager);
-
-interfaceManager.displayTasks();
+//form search
+const form = document.querySelector('form');
+form.addEventListener('submit', handleSubmit);
