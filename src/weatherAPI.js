@@ -1,17 +1,26 @@
 const search = document.getElementById('text');
 
 async function getWeather() {
-  const response = await fetch(
-    `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${search.value}?key=GKKMBUALRNG4NNCMXY7XP733Y`
-  );
-  const dataAPI = await response.json();
-  setWeatherObject(dataAPI, 0);
-  setWeatherObject(dataAPI, 1);
-  setWeatherObject(dataAPI, 2);
-  setWeatherObject(dataAPI, 3);
-  setWeatherObject(dataAPI, 4);
-  setWeatherObject(dataAPI, 5);
-  console.log(weatherReports);
+  try {
+    const response = await fetch(
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${search.value}?key=GKKMBUALRNG4NNCMXY7XP733Y`
+    );
+    const dataAPI = await response.json();
+    console.log(dataAPI.resolvedAddress);
+    setWeatherObject(dataAPI, 0);
+    setWeatherObject(dataAPI, 1);
+    setWeatherObject(dataAPI, 2);
+    setWeatherObject(dataAPI, 3);
+    setWeatherObject(dataAPI, 4);
+    setWeatherObject(dataAPI, 5);
+    console.log(weatherReports);
+  } catch (error) {
+    if (error instanceof SyntaxError) {
+      console.log("Couldn't find the place");
+    } else {
+      console.log(error);
+    }
+  }
 }
 
 function setWeatherObject(data, index) {
