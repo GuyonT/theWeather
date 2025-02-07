@@ -1,5 +1,6 @@
 import './styles.css';
 import { handleSubmit } from './weatherAPI';
+import { renderWeather } from './userInterface';
 
 // Set initial theme
 document.body.dataset.theme = 'light';
@@ -19,4 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //form search
 const form = document.querySelector('form');
-form.addEventListener('submit', handleSubmit);
+
+form.addEventListener('submit', async (e) => {
+  const weatherData = await handleSubmit(e);
+  renderWeather(weatherData);
+});
+
+//weather parser

@@ -14,6 +14,7 @@ async function getWeather() {
     setWeatherObject(dataAPI, 4);
     setWeatherObject(dataAPI, 5);
     console.log(weatherReports);
+    return weatherReports;
   } catch (error) {
     if (error instanceof SyntaxError) {
       console.log("Couldn't find the place");
@@ -41,10 +42,11 @@ class WeatherReport {
 
 const weatherReports = {};
 
-function handleSubmit(e) {
+async function handleSubmit(e) {
   e.preventDefault();
   console.log(search.value);
-  getWeather();
+  const weatherData = await getWeather();
+  return weatherData;
 }
 
 export { handleSubmit };
