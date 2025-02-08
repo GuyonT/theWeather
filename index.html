@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>theWeather</title>
+  <script defer src="main.js"></script></head>
+  <body>
+    <header>
+      <div class="logo">theWeather</div>
+      <nav class="nav">
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          aria-label="Toggle dark mode"
+        >
+          &#x263D;
+        </button>
+      </nav>
+    </header>
+    <main>
+      <form action="">
+        <label for="text">Location</label>
+        <input
+          type="text"
+          name="text"
+          id="text"
+          placeholder="Enter city name"
+          required
+        />
+        <div id="error-message" class="error-message">
+          City not found. Please check the spelling and try again.
+        </div>
+        <button type="submit">Get Weather</button>
+      </form>
+
+      <div class="carousel-container">
+        <div id="weather-main-container">
+          <div class="weather-card active" data-index="0">
+            <h2>Today</h2>
+            <div id="weather-div-0">weather</div>
+            <div id="temp-div-0">temperature</div>
+            <div id="sunrise-div-0">sunrise</div>
+            <div id="sunset-div-0">sunset</div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-buttons-container" id="carousel-buttons-container">
+        <button class="carousel-button prev" id="prevDay">&#8592;</button>
+        <button class="carousel-button next" id="nextDay">&#8594;</button>
+      </div>
+    </main>
+  </body>
+</html>
