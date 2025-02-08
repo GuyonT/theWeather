@@ -1,26 +1,38 @@
 const search = document.getElementById('text');
+const errorMessage = document.getElementById('error-message');
 
 async function getWeather() {
   try {
+    errorMessage.style.display = 'none';
+    search.classList.remove('error');
+
     const response = await fetch(
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${search.value}?key=GKKMBUALRNG4NNCMXY7XP733Y`
     );
+
+    if (!response.ok) {
+      throw new Error('CityNotFound');
+    }
+
     const dataAPI = await response.json();
     console.log(dataAPI.resolvedAddress);
-    setWeatherObject(dataAPI, 0);
-    setWeatherObject(dataAPI, 1);
-    setWeatherObject(dataAPI, 2);
-    setWeatherObject(dataAPI, 3);
-    setWeatherObject(dataAPI, 4);
-    setWeatherObject(dataAPI, 5);
+    for (let i = 0; i < 6; i++) {
+      setWeatherObject(dataAPI, i);
+    }
     console.log(weatherReports);
     return weatherReports;
   } catch (error) {
-    if (error instanceof SyntaxError) {
-      console.log("Couldn't find the place");
+    search.classList.add('error');
+    errorMessage.style.display = 'block';
+
+    if (error.message === 'CityNotFound') {
+      errorMessage.textContent = `Couldn't find "${search.value}". Please check the spelling and try again.`;
     } else {
-      console.log(error);
+      errorMessage.textContent = 'An error occurred. Please try again.';
     }
+
+    console.error(error);
+    return null;
   }
 }
 

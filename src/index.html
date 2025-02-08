@@ -7,36 +7,48 @@
   </head>
   <body>
     <header>
-      <div class="logo">bro's weather</div>
+      <div class="logo">theWeather</div>
       <nav class="nav">
         <button
           class="theme-toggle"
           id="themeToggle"
-          aria-describedby="theme-toggle"
+          aria-label="Toggle dark mode"
         >
           &#x263D;
         </button>
       </nav>
     </header>
-    <div>
+    <main>
       <form action="">
-        <label for="text">what weather you wanna know bro ?</label>
+        <label for="text">Location</label>
         <input
           type="text"
           name="text"
           id="text"
-          placeholder="put your city bro"
-          value="anchorage"
+          placeholder="Enter city name"
+          required
         />
-        <button type="submit">u need to click here bro</button>
+        <div id="error-message" class="error-message">
+          City not found. Please check the spelling and try again.
+        </div>
+        <button type="submit">Get Weather</button>
       </form>
 
-      <div id="weather-main-container">
-        <div id="weather-div">weather</div>
-        <div id="temp-div">temperature</div>
-        <div id="sunrise-div">sunrise</div>
-        <div id="sunset-div">sunset</div>
+      <div class="carousel-container">
+        <div id="weather-main-container">
+          <div class="weather-card active" data-index="0">
+            <h2>Today</h2>
+            <div id="weather-div-0">weather</div>
+            <div id="temp-div-0">temperature</div>
+            <div id="sunrise-div-0">sunrise</div>
+            <div id="sunset-div-0">sunset</div>
+          </div>
+        </div>
       </div>
-    </div>
+      <div class="carousel-buttons-container" id="carousel-buttons-container">
+        <button class="carousel-button prev" id="prevDay">&#8592;</button>
+        <button class="carousel-button next" id="nextDay">&#8594;</button>
+      </div>
+    </main>
   </body>
 </html>

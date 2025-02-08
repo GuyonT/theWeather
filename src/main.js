@@ -1,6 +1,6 @@
 import './styles.css';
 import { handleSubmit } from './weatherAPI';
-import { renderWeather } from './userInterface';
+import { renderWeather, initializeCarousel } from './userInterface';
 
 // Set initial theme
 document.body.dataset.theme = 'light';
@@ -23,7 +23,13 @@ const form = document.querySelector('form');
 
 form.addEventListener('submit', async (e) => {
   const weatherData = await handleSubmit(e);
-  renderWeather(weatherData);
+  if (weatherData) {
+    renderWeather(weatherData);
+    document.getElementById('weather-main-container').style.display = 'grid';
+    document.getElementById('carousel-buttons-container').style.display =
+      'flex';
+    initializeCarousel();
+  }
 });
 
 //weather parser
